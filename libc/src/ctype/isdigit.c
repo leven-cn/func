@@ -16,7 +16,7 @@
 
 #include "func_ctype.h"
 
-int func_isalpha(int c)
+int func_isdigit(int c)
 {
-    return (_ctype_tbl[c] & (_LO|_UP|_XA));
+    return (_ctype_tbl[c] & _DI);
 }

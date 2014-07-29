@@ -27,6 +27,7 @@ int main()
 {
     for (int c=0; c < UCHAR_MAX+1; c++) { // UCHAR+1 to test character not in ASCII character set
         assert(!((func_isalpha(c) && !isalpha(c)) || (!func_isalpha(c) && isalpha(c))));
+        assert(!((func_isdigit(c) && !isdigit(c)) || (!func_isdigit(c) && isdigit(c))));
     }
     
     return 0;

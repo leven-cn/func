@@ -60,4 +60,13 @@ extern const short *_ctype_tbl;
  */
 int func_isalpha(int c);
 
+/**
+ * @fn int func_isdigit(int c)
+ * @brief Check for an digit character
+ *
+ * @param c character to be checked.
+ * @return 1 for digit character, others for otherwise.
+ */
+int func_isdigit(int c);
+
 #endif /* __FUNC_CTYPE_H */

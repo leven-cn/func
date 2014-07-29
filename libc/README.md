@@ -1,6 +1,40 @@
 # C99
 
+- \<locale.h>
+- \<ctype.h>
 - \<string.h>
+
+## \<locale.h>
+
+```c
+#include <locale.h>
+
+LC_ALL
+LC_CTYPE     // <ctype.h>
+LC_TIME      // time and date formats
+LC_NUMERIC   // number formats
+LC_MONETARY  // monetary formats
+
+char *setlocale(int category, const char *locale) // category = "C" or "POSIX"
+```
+
+## \<ctype.h>
+
+```c
+#include <ctype.h>
+
+int isalpha(int c)
+int isdigit(int c)
+int isalnum(int c)
+int isxdigit(int c)
+int isblank(int c)
+int isspace(int c)
+int isupper(int c)
+int islower(int c)
+
+int toupper(int c)
+int tolower(int c)
+```
 
 ## \<string.h>
 

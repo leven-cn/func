@@ -30,6 +30,7 @@ int main()
         assert(!((func_isdigit(c) && !isdigit(c)) || (!func_isdigit(c) && isdigit(c))));
         assert(!((func_isalnum(c) && !isalnum(c)) || (!func_isalnum(c) && isalnum(c))));
         assert(!((func_isxdigit(c) && !isxdigit(c)) || (!func_isxdigit(c) && isxdigit(c))));
+        assert(!((func_isspace(c) && !isspace(c)) || (!func_isspace(c) && isspace(c))));
     }
     
     return 0;

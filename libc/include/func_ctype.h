@@ -87,4 +87,13 @@ int func_isalnum(int c);
  */
 int func_isxdigit(int c);
 
+/**
+ * @fn int func_isspace(int c)
+ * @brief Check for an spacing character
+ *
+ * @param c character to be checked.
+ * @return 1 for spacing character, others for otherwise.
+ */
+int func_isspace(int c);
+
 #endif /* __FUNC_CTYPE_H */

@@ -23,6 +23,8 @@
 #include <assert.h>
 
 
+static const char *src = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+
 int main()
 {
     /* Test strlen() */
@@ -61,9 +63,19 @@ int main()
     /* Test strncat() */
     char dst_stdc[8] = "a";
     char dst_func[8] = "a";
-    const char *src = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
     size_t n = 8 - strlen(dst_stdc) - 1;
     assert(strcmp(strncat(dst_stdc,src,n), func_strncat(dst_func,src,n)) == 0);
+    
+    char dst_cpy_stdc[8] = "";
+    char dst_cpy_func[8] = "";
+    strncpy(dst_cpy_stdc, src, 7);
+    func_strncpy(dst_cpy_func, src, 7);
+    assert(strcmp(dst_cpy_stdc, dst_cpy_stdc)==0 \
+            && strlen(dst_cpy_stdc)==strlen(dst_cpy_func));
+    strncpy(dst_cpy_stdc, src, 8);
+    func_strncpy(dst_cpy_func, src, 8);
+    assert(strcmp(dst_cpy_stdc, dst_cpy_stdc)==0 \
+            && strlen(dst_cpy_stdc)==strlen(dst_cpy_func));
     
     return 0;
 }

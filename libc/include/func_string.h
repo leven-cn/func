@@ -44,6 +44,8 @@ size_t func_strlen(const char *str);
  * @warning The strings may not overlap, and the <var>dst</var> string must
  * have enough space for the result.
  *
+ * @warning The <var>strcat</var> may cause memory overflow.
+ *
  * @param dst destination string buffer.
  * @param src string to be appended.
  * @param n number of characters to be appended.
@@ -82,5 +84,19 @@ int func_strncmp(const char *s1, const char *s2, size_t n);
  * @return >0 if >, <0 if <, and ==0 if ==.
  */
 int func_memcmp(const void *p1, const void *p2, size_t n);
+
+/**
+ * @fn int func_strncpy(char *dst, const char *src, size_t n)
+ * @brief Copy first <var>n</var> characters from string <var>src</var> to
+ * string buffer <var>dst</var>.
+ *
+ * @warning The <var>strcpy()</var> may cause memory overflow.
+ *
+ * @param dst destination string buffer.
+ * @param src source string.
+ * @param n number of first characters to be copied.
+ * @return pointer to destination string.
+ */
+char *func_strncpy(char *dst, const char *src, size_t n);
 
 #endif /* __FUNC_STRING_H */

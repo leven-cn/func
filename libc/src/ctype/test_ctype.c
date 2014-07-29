@@ -31,6 +31,8 @@ int main()
         assert(!((func_isalnum(c) && !isalnum(c)) || (!func_isalnum(c) && isalnum(c))));
         assert(!((func_isxdigit(c) && !isxdigit(c)) || (!func_isxdigit(c) && isxdigit(c))));
         assert(!((func_isspace(c) && !isspace(c)) || (!func_isspace(c) && isspace(c))));
+        assert(!((func_islower(c) && !islower(c)) || (!func_islower(c) && islower(c))));
+        assert(!((func_isupper(c) && !isupper(c)) || (!func_isupper(c) && isupper(c))));
     }
     
     return 0;

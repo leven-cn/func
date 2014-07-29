@@ -96,4 +96,22 @@ int func_isxdigit(int c);
  */
 int func_isspace(int c);
 
+/**
+ * @fn int func_islower(int c)
+ * @brief Check for an lower case character
+ *
+ * @param c character to be checked.
+ * @return 1 for lower case character, others for otherwise.
+ */
+int func_islower(int c);
+
+/**
+ * @fn int func_isupper(int c)
+ * @brief Check for an upper case character
+ *
+ * @param c character to be checked.
+ * @return 1 for upper case character, others for otherwise.
+ */
+int func_isupper(int c);
+
 #endif /* __FUNC_CTYPE_H */

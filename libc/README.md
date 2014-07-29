@@ -33,6 +33,7 @@ int isupper(int c)
 int islower(int c)
 int iscntrl(int c)
 int isgraph(int c)
+int isprint(int c)
 
 int tolower(int c)
 int toupper(int c)

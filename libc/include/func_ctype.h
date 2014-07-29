@@ -152,4 +152,13 @@ int func_iscntrl(int c);
  */
 int func_isgraph(int c);
 
+/**
+ * @fn int func_isprint(int c)
+ * @brief Check for an printable character
+ *
+ * @param c character to be checked.
+ * @return 1 for printable character, others for otherwise.
+ */
+int func_isprint(int c);
+
 #endif /* __FUNC_CTYPE_H */

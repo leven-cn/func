@@ -1,7 +1,4 @@
 /**
- * Test <string.h>
- *
- *
  * Copyright 2014 Li Yun <leven.cn@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,23 +15,17 @@
  */
 
 #include "func_string.h"
-#include <limits.h>
-#include <string.h>
-#include <assert.h>
 
-
-int main()
+char *func_strncat(char *dst, const char *src, size_t n)
 {
-    /* Test strlen() */
-    assert(func_strlen("") == strlen(""));
-    assert(func_strlen("string") == strlen("string"));
-    
-    /* Test strncat() */
-    char dst_stdc[8] = "a";
-    char dst_func[8] = "a";
-    const char *src = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
-    size_t n = 8 - strlen(dst_stdc) - 1;
-    assert(strcmp(strncat(dst_stdc,src,n), func_strncat(dst_func,src,n)) == 0);
-    
-    return 0;
+    size_t dst_len = func_strlen(dst);
+ 
+    size_t i=0;
+    while (i<n && src[i]!='\0') {
+        dst[dst_len + i] = src[i];
+        i++;
+    }
+    dst[dst_len + i] = '\0';
+ 
+    return dst;
 }

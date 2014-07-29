@@ -35,4 +35,20 @@
  */
 size_t func_strlen(const char *str);
 
+/**
+ * @fn size_t func_strncat(char *dst, const char *src, size_t n)
+ * @brief Appends the <var>src</var> string to the <var>dst</var> string,
+ *        overwriting the terminating null byte ('\0') at the end of
+ *        <var>dst</var>, and then adds a terminating null byte.
+ *
+ * @warning The strings may not overlap, and the <var>dst</var> string must
+ * have enough space for the result.
+ *
+ * @param dst destination string buffer.
+ * @param src string to be appended.
+ * @param n number of characters to be appended.
+ * @return the destination string.
+ */
+char *func_strncat(char *dst, const char *src, size_t n);
+
 #endif /* __FUNC_STRING_H */

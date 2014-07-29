@@ -29,6 +29,25 @@ int main()
     assert(func_strlen("") == strlen(""));
     assert(func_strlen("string") == strlen("string"));
     
+    /* Test strcmp() */
+    assert(func_strcmp("abc", "bbc") < 0);
+    assert(func_strcmp("bbc", "abc") > 0);
+    assert(func_strcmp("abc", "abc") == 0);
+    assert(func_strcmp("abc", "aac") > 0);
+    assert(func_strcmp("aac", "abc") < 0);
+    assert(func_strcmp("abcde", "abc") > 0);
+    assert(func_strcmp("aacde", "abc") < 0);
+    
+    /* Test strncmp() */
+    assert(func_strncmp("abc","bbc", 3) < 0);
+    assert(func_strncmp("bbc", "abc", 3) > 0);
+    assert(func_strncmp("abc", "abc", 3) == 0);
+    assert(func_strncmp("abc", "aac", 3) > 0);
+    assert(func_strncmp("aac", "abc", 3) < 0);
+    assert(func_strncmp("abcde", "abc", 5) > 0);
+    assert(func_strncmp("aacde", "abc", 5) < 0);
+    assert(func_strncmp("abcde", "abc", 3) == 0);
+    
     /* Test strncat() */
     char dst_stdc[8] = "a";
     char dst_func[8] = "a";

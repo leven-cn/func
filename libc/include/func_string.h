@@ -51,4 +51,25 @@ size_t func_strlen(const char *str);
  */
 char *func_strncat(char *dst, const char *src, size_t n);
 
+/**
+ * @fn int func_strcmp(const char *s1, const char *s2)
+ * @brief Compare two strings.
+ *
+ * @param s1 one string.
+ * @param s2 another string.
+ * @return >0 if s1 > s2, <0 if s1 < s2, and ==0 if s1==s2.
+ */
+int func_strcmp(const char *s1, const char *s2);
+
+/**
+ * @fn int func_strncmp(const char *s1, const char *s2, size_t n)
+ * @brief Compare first <var>n</var> characters of two strings.
+ *
+ * @param s1 one string.
+ * @param s2 another string.
+ * @param n number of first characters to be compared.
+ * @return >0 if >, <0 if <, and ==0 if ==.
+ */
+int func_strncmp(const char *s1, const char *s2, size_t n);
+
 #endif /* __FUNC_STRING_H */

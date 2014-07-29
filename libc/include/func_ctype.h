@@ -69,4 +69,13 @@ int func_isalpha(int c);
  */
 int func_isdigit(int c);
 
+/**
+ * @fn int func_isalnum(int c)
+ * @brief Check for an alphanumeric character
+ *
+ * @param c character to be checked.
+ * @return 1 for alphanumeric character, others for otherwise.
+ */
+int func_isalnum(int c);
+
 #endif /* __FUNC_CTYPE_H */

@@ -3,17 +3,18 @@
 -include $(TOPDIR)/def.mk
 
 SUBDIR_CTYPE = ctype
+SUBDIR_STR = string
 
 .PHONY: all clean test
 	
 all:
 	$(MAKE) -C $(SUBDIR_CTYPE) -e TOPDIR=../$(TOPDIR)
-	@echo $(SUBDIR_CTYPE) Build done
+	$(MAKE) -C $(SUBDIR_STR) -e TOPDIR=../$(TOPDIR)
 
 clean:
 	$(MAKE) -C $(SUBDIR_CTYPE) clean
-	@echo $(SUBDIR_CTYPE) Clean done
+	$(MAKE) -C $(SUBDIR_STR) clean
 	
 test:
 	$(MAKE) -C $(SUBDIR_CTYPE) test
-	@echo $(SUBDIR_CTYPE) Test done
+	$(MAKE) -C $(SUBDIR_STR) test

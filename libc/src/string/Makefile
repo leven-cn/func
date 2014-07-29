@@ -1,10 +1,10 @@
-# Makefile for ctype
+# Makefile for string
 
 -include $(TOPDIR)/def.mk
 
 CPPFLAGS += -I$(TOPDIR)/include
 
-PROG = test_ctype.exe
+PROG = test_string.exe
 
 SRCS = $(notdir $(wildcard *.c))
 OBJS = $(subst .c,.o,$(SRCS))
@@ -16,13 +16,13 @@ OBJS = $(subst .c,.o,$(SRCS))
 	
 all: $(OBJS)
 	$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) -o $(PROG) $^
-	@echo Build ctype done
+	@echo Build string done
 
 clean:
 	-$(RM) $(PROG) $(OBJS)
-	@echo Clean ctype done
+	@echo Clean string done
 	
 test:
 	chmod u+x $(PROG)
 	./$(PROG)
-	@echo Test ctype done
+	@echo Test string done

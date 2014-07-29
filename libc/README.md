@@ -27,7 +27,7 @@ int isalpha(int c)
 int isdigit(int c)
 int isalnum(int c)
 int isxdigit(int c)
-int isblank(int c)
+int isblank(int c) // New in C99
 int isspace(int c)
 int isupper(int c)
 int islower(int c)
@@ -43,9 +43,11 @@ int toupper(int c)
 ## \<string.h>
 
 ```c
+#include <string.h>
+
 size_t strlen(const char *str)
 
-char *strcat(char *dst, const char *src) /* NOT used, use strncat() instead */
+char *strcat(char *dst, const char *src) // NOT used, use strncat() instead
 char *strncat(char *dst, const char *src, size_t n)
 
 int strcmp(const char *s1, const char *s2)

@@ -36,6 +36,7 @@ int main()
         assert(!((func_iscntrl(c) && !iscntrl(c)) || (!func_iscntrl(c) && iscntrl(c))));
         assert(!((func_isgraph(c) && !isgraph(c)) || (!func_isgraph(c) && isgraph(c))));
         assert(!((func_isprint(c) && !isprint(c)) || (!func_isprint(c) && isprint(c))));
+        assert(!((func_ispunct(c) && !ispunct(c)) || (!func_ispunct(c) && ispunct(c))));
         
         assert(func_tolower(c) == tolower(c));
         assert(func_toupper(c) == toupper(c));

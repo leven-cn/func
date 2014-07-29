@@ -161,4 +161,13 @@ int func_isgraph(int c);
  */
 int func_isprint(int c);
 
+/**
+ * @fn int func_ispunct(int c)
+ * @brief Check for an punctuation character
+ *
+ * @param c character to be checked.
+ * @return 1 for punctuation character, others for otherwise.
+ */
+int func_ispunct(int c);
+
 #endif /* __FUNC_CTYPE_H */

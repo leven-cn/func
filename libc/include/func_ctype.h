@@ -50,6 +50,8 @@
 
 /* ctype conversion table -- ASCII version */
 extern const short *_ctype_tbl;
+extern const short *_tolower_tbl;
+extern const short *_toupper_tbl;
 
 /**
  * @fn int func_isalpha(int c)
@@ -113,5 +115,23 @@ int func_islower(int c);
  * @return 1 for upper case character, others for otherwise.
  */
 int func_isupper(int c);
+
+/**
+ * @fn int func_tolower(int c)
+ * @brief Converts the letter to lower case, if possible.
+ *
+ * @param c character to be checked.
+ * @return converted letter.
+ */
+int func_tolower(int c);
+
+/**
+ * @fn int func_toupper(int c)
+ * @brief Converts the letter to upper case, if possible.
+ *
+ * @param c character to be checked.
+ * @return converted letter.
+ */
+int func_toupper(int c);
 
 #endif /* __FUNC_CTYPE_H */

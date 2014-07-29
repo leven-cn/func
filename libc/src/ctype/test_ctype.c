@@ -33,6 +33,9 @@ int main()
         assert(!((func_isspace(c) && !isspace(c)) || (!func_isspace(c) && isspace(c))));
         assert(!((func_islower(c) && !islower(c)) || (!func_islower(c) && islower(c))));
         assert(!((func_isupper(c) && !isupper(c)) || (!func_isupper(c) && isupper(c))));
+        
+        assert(func_tolower(c) == tolower(c));
+        assert(func_toupper(c) == toupper(c));
     }
     
     return 0;

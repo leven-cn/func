@@ -143,4 +143,13 @@ int func_toupper(int c);
  */
 int func_iscntrl(int c);
 
+/**
+ * @fn int func_isgraph(int c)
+ * @brief Check for an graphic character
+ *
+ * @param c character to be checked.
+ * @return 1 for graphic character, others for otherwise.
+ */
+int func_isgraph(int c);
+
 #endif /* __FUNC_CTYPE_H */

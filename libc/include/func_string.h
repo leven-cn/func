@@ -72,4 +72,15 @@ int func_strcmp(const char *s1, const char *s2);
  */
 int func_strncmp(const char *s1, const char *s2, size_t n);
 
+/**
+ * @fn int func_memcmp(const void *p1, const void *p2, size_t n)
+ * @brief Compare first <var>n</var> bytes of two memory areas.
+ *
+ * @param p1 one memory area.
+ * @param p2 another memory area.
+ * @param n number of first bytes to be compared.
+ * @return >0 if >, <0 if <, and ==0 if ==.
+ */
+int func_memcmp(const void *p1, const void *p2, size_t n);
+
 #endif /* __FUNC_STRING_H */

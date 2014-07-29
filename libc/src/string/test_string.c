@@ -48,6 +48,16 @@ int main()
     assert(func_strncmp("aacde", "abc", 5) < 0);
     assert(func_strncmp("abcde", "abc", 3) == 0);
     
+    /* Test memcmp() */
+    assert(func_memcmp("abc","bbc", 3) < 0);
+    assert(func_memcmp("bbc", "abc", 3) > 0);
+    assert(func_memcmp("abc", "abc", 3) == 0);
+    assert(func_memcmp("abc", "aac", 3) > 0);
+    assert(func_memcmp("aac", "abc", 3) < 0);
+    assert(func_memcmp("abcde", "abc", 5) > 0);
+    assert(func_memcmp("aacde", "abc", 5) < 0);
+    assert(func_memcmp("abcde", "abc", 3) == 0);
+    
     /* Test strncat() */
     char dst_stdc[8] = "a";
     char dst_func[8] = "a";

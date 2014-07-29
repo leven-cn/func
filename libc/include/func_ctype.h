@@ -134,4 +134,13 @@ int func_tolower(int c);
  */
 int func_toupper(int c);
 
+/**
+ * @fn int func_iscntrl(int c)
+ * @brief Check for an control character
+ *
+ * @param c character to be checked.
+ * @return 1 for control character, others for otherwise.
+ */
+int func_iscntrl(int c);
+
 #endif /* __FUNC_CTYPE_H */

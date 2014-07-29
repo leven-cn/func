@@ -1,7 +1,4 @@
 /**
- * Test <ctype.h>
- *
- *
  * Copyright 2014 Li Yun <leven.cn@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,19 +15,8 @@
  */
 
 #include "func_ctype.h"
-#include <limits.h>
-#include <ctype.h>
-#include <assert.h>
 
-
-int main()
+int func_isxdigit(int c)
 {
-    for (int c=0; c < UCHAR_MAX+1; c++) { // UCHAR+1 to test character not in ASCII character set
-        assert(!((func_isalpha(c) && !isalpha(c)) || (!func_isalpha(c) && isalpha(c))));
-        assert(!((func_isdigit(c) && !isdigit(c)) || (!func_isdigit(c) && isdigit(c))));
-        assert(!((func_isalnum(c) && !isalnum(c)) || (!func_isalnum(c) && isalnum(c))));
-        assert(!((func_isxdigit(c) && !isxdigit(c)) || (!func_isxdigit(c) && isxdigit(c))));
-    }
-    
-    return 0;
+    return (_ctype_tbl[c] & _XD);
 }

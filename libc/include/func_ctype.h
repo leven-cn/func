@@ -78,4 +78,13 @@ int func_isdigit(int c);
  */
 int func_isalnum(int c);
 
+/**
+ * @fn int func_isxdigit(int c)
+ * @brief Check for an hex-digit character
+ *
+ * @param c character to be checked.
+ * @return 1 for hex-digit character, others for otherwise.
+ */
+int func_isxdigit(int c);
+
 #endif /* __FUNC_CTYPE_H */

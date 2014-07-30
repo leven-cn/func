@@ -16,20 +16,14 @@
 
 #include "func_string.h"
 
-void *func_memmove(void *dst, const void *src, size_t n)
+void *func_memset(void *p, int c, size_t n)
 {
-    char *d = dst;
-    const char *s = src;
+    unsigned char *m = p;
+    const unsigned char uc = (unsigned char)c;
     
-    if (s < d && d < s + n) {
-        for (d+=n,s+=n; n>0; n--) {
-            *--d = *--s; // copy backwards
-        }
-    } else {
-        for (; n>0; n--) {
-            *d++ = *s++; // copy forwards
-        }
+    for (; n>0; m++,n--) {
+        *m = uc;
     }
 
-    return dst;
+    return p;
 }

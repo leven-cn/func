@@ -128,4 +128,16 @@ void *func_memcpy(void *dst, const void *src, size_t n);
  */
 void *func_memmove(void *dst, const void *src, size_t n);
 
+/**
+ * @fn void *func_memset(void *p, int c, size_t n)
+ * @brief Fills the first <var>n</var> bytes of the memory area pointed to by
+ * <var>p</var> with the constant byte <var>c</var>.
+ *
+ * @param p a pointer to memory area.
+ * @param c constant byte filled.
+ * @param n number of first bytes to be filled.
+ * @return a pointer to memory area.
+ */
+void *func_memset(void *p, int c, size_t n);
+
 #endif /* __FUNC_STRING_H */

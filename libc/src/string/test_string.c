@@ -67,28 +67,31 @@ int main()
     assert(strcmp(strncat(dst_stdc,src,n), func_strncat(dst_func,src,n)) == 0);
     
     /* Test strncpy() */
-    char dst_strncpy_stdc[8] = "";
-    char dst_strncpy_func[8] = "";
+    char dst_strncpy_stdc[8];
+    char dst_strncpy_func[8];
     strncpy(dst_strncpy_stdc, src, 7);
     func_strncpy(dst_strncpy_func, src, 7);
     assert(strcmp(dst_strncpy_stdc, dst_strncpy_stdc)==0 \
             && strlen(dst_strncpy_stdc)==strlen(dst_strncpy_func));
             
     /* Test memcpy() */
-    char dst_memcpy_stdc[8] = "";
-    char dst_memcpy_func[8] = "";
-    strncpy(dst_memcpy_stdc, src, 7);
-    func_strncpy(dst_memcpy_func, src, 7);
-    assert(strcmp(dst_memcpy_stdc, dst_memcpy_stdc)==0 \
-            && strlen(dst_memcpy_stdc)==strlen(dst_memcpy_func));
+    char dst_memcpy_stdc[8];
+    char dst_memcpy_func[8];
+    memcpy(dst_memcpy_stdc, src, 7);
+    func_memcpy(dst_memcpy_func, src, 7);
+    assert(memcmp(dst_memcpy_stdc, dst_memcpy_func, 7) == 0);
             
     /* Test memmove() */
-    char dst_memmove_stdc[8] = "";
-    char dst_memmove_func[8] = "";
-    strncpy(dst_memmove_stdc, src, 7);
-    func_strncpy(dst_memmove_func, src, 7);
-    assert(strcmp(dst_memmove_stdc, dst_memmove_stdc)==0 \
-            && strlen(dst_memmove_stdc)==strlen(dst_memmove_func));
+    char dst_memmove_stdc[8];
+    char dst_memmove_func[8];
+    memmove(dst_memmove_stdc, src, 7);
+    func_memmove(dst_memmove_func, src, 7);
+    assert(memcmp(dst_memmove_stdc, dst_memmove_func, 7) == 0);
+            
+    /* Test memset() */
+    char memset_buf[6] = "123456";
+    assert(memcmp(memset(memset_buf, 0, 6), "\0\0\0\0\0\0", 6) == 0);
+    assert(func_memcmp(memset(memset_buf, 0, 6), "\0\0\0\0\0\0", 6) == 0);
     
     return 0;
 }

@@ -67,12 +67,20 @@ int main()
     assert(strcmp(strncat(dst_stdc,src,n), func_strncat(dst_func,src,n)) == 0);
     
     /* Test strncpy() */
-    char dst_cpy_stdc[8] = "";
-    char dst_cpy_func[8] = "";
-    strncpy(dst_cpy_stdc, src, 7);
-    func_strncpy(dst_cpy_func, src, 7);
-    assert(strcmp(dst_cpy_stdc, dst_cpy_stdc)==0 \
-            && strlen(dst_cpy_stdc)==strlen(dst_cpy_func));
+    char dst_strncpy_stdc[8] = "";
+    char dst_strncpy_func[8] = "";
+    strncpy(dst_strncpy_stdc, src, 7);
+    func_strncpy(dst_strncpy_func, src, 7);
+    assert(strcmp(dst_strncpy_stdc, dst_strncpy_stdc)==0 \
+            && strlen(dst_strncpy_stdc)==strlen(dst_strncpy_func));
+            
+    /* Test memcpy() */
+    char dst_memcpy_stdc[8] = "";
+    char dst_memcpy_func[8] = "";
+    strncpy(dst_memcpy_stdc, src, 7);
+    func_strncpy(dst_memcpy_func, src, 7);
+    assert(strcmp(dst_memcpy_stdc, dst_memcpy_stdc)==0 \
+            && strlen(dst_memcpy_stdc)==strlen(dst_memcpy_func));
     
     return 0;
 }

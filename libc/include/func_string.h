@@ -36,7 +36,7 @@
 size_t func_strlen(const char *str);
 
 /**
- * @fn size_t func_strncat(char *dst, const char *src, size_t n)
+ * @fn char *func_strncat(char *dst, const char *src, size_t n)
  * @brief Appends the <var>src</var> string to the <var>dst</var> string,
  *        overwriting the terminating null byte ('\0') at the end of
  *        <var>dst</var>, and then adds a terminating null byte.
@@ -86,7 +86,7 @@ int func_strncmp(const char *s1, const char *s2, size_t n);
 int func_memcmp(const void *p1, const void *p2, size_t n);
 
 /**
- * @fn int func_strncpy(char *dst, const char *src, size_t n)
+ * @fn char *func_strncpy(char *dst, const char *src, size_t n)
  * @brief Copy first <var>n</var> characters from string <var>src</var> to
  * string buffer <var>dst</var>.
  *
@@ -98,5 +98,19 @@ int func_memcmp(const void *p1, const void *p2, size_t n);
  * @return pointer to destination string.
  */
 char *func_strncpy(char *dst, const char *src, size_t n);
+
+/**
+ * @fn void *func_memcpy(void *dst, const void *src, size_t n)
+ * @brief Copy first <var>n</var> bytes from memory area <var>src</var> to
+ * memory area <var>dst</var>.
+ *
+ * @warning The memory areas must NOT overlap.
+ *
+ * @param dst destination memory area.
+ * @param src source memory area.
+ * @param n number of first bytes to be copied.
+ * @return pointer to destination memory area.
+ */
+void *func_memcpy(void *dst, const void *src, size_t n);
 
 #endif /* __FUNC_STRING_H */

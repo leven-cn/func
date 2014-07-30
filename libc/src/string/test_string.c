@@ -81,6 +81,14 @@ int main()
     func_strncpy(dst_memcpy_func, src, 7);
     assert(strcmp(dst_memcpy_stdc, dst_memcpy_stdc)==0 \
             && strlen(dst_memcpy_stdc)==strlen(dst_memcpy_func));
+            
+    /* Test memmove() */
+    char dst_memmove_stdc[8] = "";
+    char dst_memmove_func[8] = "";
+    strncpy(dst_memmove_stdc, src, 7);
+    func_strncpy(dst_memmove_func, src, 7);
+    assert(strcmp(dst_memmove_stdc, dst_memmove_stdc)==0 \
+            && strlen(dst_memmove_stdc)==strlen(dst_memmove_func));
     
     return 0;
 }

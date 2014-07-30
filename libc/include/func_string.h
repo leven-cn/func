@@ -49,7 +49,7 @@ size_t func_strlen(const char *str);
  * @param dst destination string buffer.
  * @param src string to be appended.
  * @param n number of characters to be appended.
- * @return the destination string.
+ * @return a pointer to the destination string.
  */
 char *func_strncat(char *dst, const char *src, size_t n);
 
@@ -95,7 +95,7 @@ int func_memcmp(const void *p1, const void *p2, size_t n);
  * @param dst destination string buffer.
  * @param src source string.
  * @param n number of first characters to be copied.
- * @return pointer to destination string.
+ * @return a pointer to destination string.
  */
 char *func_strncpy(char *dst, const char *src, size_t n);
 
@@ -109,8 +109,23 @@ char *func_strncpy(char *dst, const char *src, size_t n);
  * @param dst destination memory area.
  * @param src source memory area.
  * @param n number of first bytes to be copied.
- * @return pointer to destination memory area.
+ * @return a pointer to destination memory area.
  */
 void *func_memcpy(void *dst, const void *src, size_t n);
+
+/**
+ * @fn void *func_memmove(void *dst, const void *src, size_t n)
+ * @brief Copy first <var>n</var> bytes from memory area <var>src</var> to
+ * memory area <var>dst</var>. The memory areas may overlap: copying takes
+ * place as though the bytes in <var>src</var> are first copied into a
+ * temporary array that does not overlap <var>src</var> or <var>dst</var>, and
+ * the bytes are then copied from the temporary array to <var>dst</var>.
+ *
+ * @param dst destination memory area.
+ * @param src source memory area.
+ * @param n number of first bytes to be copied.
+ * @return a pointer to destination memory area.
+ */
+void *func_memmove(void *dst, const void *src, size_t n);
 
 #endif /* __FUNC_STRING_H */

@@ -21,9 +21,8 @@ char *func_strncat(char *dst, const char *src, size_t n)
     size_t dst_len = func_strlen(dst);
  
     size_t i=0;
-    while (i<n && src[i]!='\0') {
+    for (; i<n && src[i]!='\0'; i++) {
         dst[dst_len + i] = src[i];
-        i++;
     }
     dst[dst_len + i] = '\0';
  

@@ -19,12 +19,11 @@
 char *func_strncpy(char *dst, const char *src, size_t n)
 {
     size_t i = 0;
-    while (i<n && src[i]!='\0') {
+    for (; i<n && src[i]!='\0'; i++) {
         dst[i] = src[i];
-        i++;
     }
     
-    /* null-terminated if any memory */
+    /* null-terminated if any memory area */
     while (i<n) {
         dst[i] = '\0';
     }

@@ -21,13 +21,10 @@ int func_memcmp(const void *p1, const void *p2, size_t n)
     const unsigned char *up1 = (unsigned char *)p1;
     const unsigned char *up2 = (unsigned char *)p2;
     
-    while (n > 0) {
+    for (; n>0; up1++,up2++,n--) {
         if (*up1 != *up2) {
             return (*up1<*up2) ? -1 : +1;
         }
-        up1++;
-        up2++;
-        n--;
     }
     return 0;
 }

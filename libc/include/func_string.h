@@ -164,7 +164,7 @@ char *func_strrchr(const char *str, int c);
 
 /**
  * @fn void *func_memchr(const void *p, int c, size_t n)
- * @brief Scans the initial <var>n</var> bytes of the memory area pointed to by
+ * @brief Scan the initial <var>n</var> bytes of the memory area pointed to by
  * <var>p</var> for the first instance of <var>c</var>. Both <var>c</var> and
  * the bytes of the memory area pointed to by <var>p</var> are interpreted as
  * <code>unsigned char</code>.
@@ -176,5 +176,18 @@ char *func_strrchr(const char *str, int c);
  * not found.
  */
 void *func_memchr(const void *p, int c, size_t n);
+
+/**
+ * @fn char *func_strstr(const char *str, const char *sub)
+ * @brief Find the first occurrence of the substring <var>sub</var> in the
+ * string <var>str</var>. The terminating null bytes (<code>'\0'</code>) are
+ * not compared.
+ *
+ * @param str the string to be scanned.
+ * @param sub the substring to be found.
+ * @return a pointer to the first occurrence of the substring <var>sub</var> in
+ * the string <var>str</var> or <code>NULL</code> if the substring is not found.
+ */
+char *func_strstr(const char *str, const char *sub);
 
 #endif /* __FUNC_STRING_H */

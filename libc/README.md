@@ -66,11 +66,12 @@ char *strchr(const char *str, int c)
 char *strrchr(const char *str, int c)
 void *memchr(const void *ptr, int val, size_t len)
 
+char *strstr(const char *str, const char *sub)
+
 size_t strspn(const char *str, const char *set)
 size_t strcspn(const char *str, const char *set)
 char *strpbrk(const char *str, const char *set)
 
-char *strstr(const char *str, const char *sub)
 char *strtok(char *str, const char *seps)
 ```
 

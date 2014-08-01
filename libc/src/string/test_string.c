@@ -93,7 +93,7 @@ int main()
     assert(memcmp(memset(memset_buf, 0, 6), "\0\0\0\0\0\0", 6) == 0);
     assert(func_memcmp(memset(memset_buf, 0, 6), "\0\0\0\0\0\0", 6) == 0);
     
-    /* Test strchr() and strrchr() */
+    /* Test strchr(), strrchr() and strstr() */
     char *s_strchr = "123456";
     for (char *s=s_strchr; *s!='\0'; s++) {
         assert(strchr(s_strchr, (int)(*s)) \
@@ -102,6 +102,7 @@ int main()
                 == func_strrchr(s_strchr, (int)(*s)));
         assert(memchr(s_strchr, (int)(*s), strlen(s_strchr)) \
                 == func_memchr(s_strchr, (int)(*s), strlen(s_strchr)));
+        assert(strstr(s_strchr, s) == func_strstr(s_strchr, s));
     }
     
     return 0;

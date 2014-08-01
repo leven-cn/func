@@ -18,7 +18,6 @@
  */
 
 #include "func_string.h"
-#include <limits.h>
 #include <string.h>
 #include <assert.h>
 

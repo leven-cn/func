@@ -23,7 +23,7 @@
 #include <assert.h>
 
 
-static const char *src = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+static char *src = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
 
 int main()
 {
@@ -92,6 +92,17 @@ int main()
     char memset_buf[6] = "123456";
     assert(memcmp(memset(memset_buf, 0, 6), "\0\0\0\0\0\0", 6) == 0);
     assert(func_memcmp(memset(memset_buf, 0, 6), "\0\0\0\0\0\0", 6) == 0);
+    
+    /* Test strchr() and strrchr() */
+    char *s_strchr = "123456";
+    for (char *s=s_strchr; *s!='\0'; s++) {
+        assert(strchr(s_strchr, (int)(*s)) \
+                == func_strchr(s_strchr, (int)(*s)));
+        assert(strrchr(s_strchr, (int)(*s)) \
+                == func_strrchr(s_strchr, (int)(*s)));
+        assert(memchr(s_strchr, (int)(*s), strlen(s_strchr)) \
+                == func_memchr(s_strchr, (int)(*s), strlen(s_strchr)));
+    }
     
     return 0;
 }

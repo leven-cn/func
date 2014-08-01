@@ -3,6 +3,7 @@
 - \<locale.h>
 - \<ctype.h>
 - \<string.h>
+- \<stdlib.h>
 
 ## \<locale.h>
 
@@ -54,7 +55,7 @@ int memcmp(const void *p1, const void *p2, size_t n)
 char *strcat(char *dst, const char *src) // NOT used, use strncat() instead
 char *strncat(char *dst, const char *src, size_t n)
 
-char *strcpy(char *dst, const char *src) /* NOT used, use strncpy() instead */
+char *strcpy(char *dst, const char *src) // NOT used, use strncpy() instead
 char *strncpy(char *dst, const char *src, size_t n)
 void *memcpy(void *dst, const void *src, size_t n)
 void *memmove(void *dst, const void *src, size_t n)
@@ -71,4 +72,13 @@ char *strpbrk(const char *str, const char *set)
 
 char *strstr(const char *str, const char *sub)
 char *strtok(char *str, const char *seps)
+```
+
+## \<stdlib.h>
+
+```c
+#include <stdlib.h>
+
+/* environment */
+char *getenv(const char *env_name)
 ```

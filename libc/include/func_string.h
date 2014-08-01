@@ -38,8 +38,8 @@ size_t func_strlen(const char *str);
 /**
  * @fn char *func_strncat(char *dst, const char *src, size_t n)
  * @brief Appends the <var>src</var> string to the <var>dst</var> string,
- *        overwriting the terminating null byte ('\0') at the end of
- *        <var>dst</var>, and then adds a terminating null byte.
+ * overwriting the terminating null byte (<code>'\0'</code>) at the end of
+ * <var>dst</var>, and then adds a terminating null byte.
  *
  * @warning The strings may not overlap, and the <var>dst</var> string must
  * have enough space for the result.
@@ -139,5 +139,42 @@ void *func_memmove(void *dst, const void *src, size_t n);
  * @return a pointer to memory area.
  */
 void *func_memset(void *p, int c, size_t n);
+
+/**
+ * @fn char *func_strchr(const char *str, int c)
+ * @brief Find first occurrence of <var>c</var> in string <var>str</var>.
+ *
+ * @param str the string to be scanned.
+ * @param c the character to be found.
+ * @return a pointer to the first occurrence of the character <var>c</var> in
+ * the string <var>str</var> or <code>NULL</code> if the character is not found.
+ */
+char *func_strchr(const char *str, int c);
+
+/**
+ * @fn char *func_strrchr(const char *str, int c)
+ * @brief Find last occurrence of <var>c</var> in string <var>str</var>.
+ *
+ * @param str the string to be scanned.
+ * @param c the character to be found.
+ * @return a pointer to the last occurrence of the character <var>c</var> in
+ * the string <var>str</var> or <code>NULL</code> if the character is not found.
+ */
+char *func_strrchr(const char *str, int c);
+
+/**
+ * @fn void *func_memchr(const void *p, int c, size_t n)
+ * @brief Scans the initial <var>n</var> bytes of the memory area pointed to by
+ * <var>p</var> for the first instance of <var>c</var>. Both <var>c</var> and
+ * the bytes of the memory area pointed to by <var>p</var> are interpreted as
+ * <code>unsigned char</code>.
+ *
+ * @param p the memory area to be scanned.
+ * @param c the byte/character to be found.
+ * @return a pointer to the first occurrence of the byte/character <var>c</var>
+ * in the memory area <var>p</var> or <var>NULL</var> if the byte/character is
+ * not found.
+ */
+void *func_memchr(const void *p, int c, size_t n);
 
 #endif /* __FUNC_STRING_H */

@@ -33,7 +33,7 @@ int main()
         if (env_func!=NULL && env_stdc!=NULL) {
             assert(func_strcmp(env_func, env_stdc) == 0);
         } else {
-            assert(env_func == env_stdc);
+            assert(env_func==NULL && env_func==env_stdc);
         }
     }
     

@@ -20,7 +20,7 @@
 #include "func_string.h"
 #include <string.h>
 #include <assert.h>
-//#include <stdio.h> an issue on Mac OS X 10.9.4
+#include <stdio.h> // an issue on Mac OS X 10.9.4
 
 
 static char *src = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
@@ -71,7 +71,7 @@ int main()
     char dst_strncpy_func[8];
     strncpy(dst_strncpy_stdc, src, 7);
     func_strncpy(dst_strncpy_func, src, 7);
-    //puts(dst_strncpy_stdc); // On Mac OS X 10.9.4, passed by adding this line
+    puts(dst_strncpy_stdc); // On Mac OS X 10.9.4, passed by adding this line
     assert(strcmp(dst_strncpy_stdc, dst_strncpy_func)==0 \
             && strlen(dst_strncpy_stdc)==strlen(dst_strncpy_func));
 

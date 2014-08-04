@@ -46,6 +46,8 @@
 #ifndef __FUNC_STDLIB_H
 #define __FUNC_STDLIB_H
 
+#include <stddef.h>
+
 /**
  * @fn char *func_getenv(const char *name)
  * @brief Get the environment variable.
@@ -55,5 +57,29 @@
  * no environment variable available.
  */
 char *func_getenv(const char *name);
+
+/**
+ * @fn void func_free(void *p)
+ * @brief Frees the memory space pointed to by <var>p</var>, which must have
+ * been returned by a previous call to <code>malloc()</code>,
+ * <code>calloc()</code> or <code>realloc()</code>. Otherwise, or if
+ * <code>free(p)</code> has already been called before, undefined behavior
+ * occurs. If <var>p</var> is <code>NULL</code>, no operation is performed.
+ *
+ * @param p pointer to memory space to be freed.
+ */
+void func_free(void *p);
+
+/**
+ * @fn void *func_malloc(size_t size)
+ * @brief Allocates <var>size</var> bytes and returns a pointer to the
+ * allocated memory. The memory is NOT initialized. If size is 0, then
+ * <code>malloc()</code> returns either <code>NULL</code>, or a unique pointer
+ * value that can later be successfully passed to <code>free()</code>.
+ *
+ * @param size bytes of memory allocated.
+ * @return a pointer to the allocated memory.
+ */
+void *func_malloc(size_t size);
 
 #endif /* __FUNC_STDLIB_H */

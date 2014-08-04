@@ -1,15 +1,32 @@
-# C99
+# C
 
+- ANSI C99
+- POSIX C
+
+## C99
+
+- \<stddef.h>
 - \<locale.h>
 - \<ctype.h>
 - \<string.h>
 - \<stdlib.h>
 
-## \<locale.h>
+### \<stddef.h>
+
+```c
+#include <stddef.h>
+
+NULL
+
+size_t
+```
+
+### \<locale.h>
 
 ```c
 #include <locale.h>
 
+/* locale category */
 LC_ALL
 LC_CTYPE     // <ctype.h>
 LC_TIME      // time and date formats
@@ -19,7 +36,7 @@ LC_MONETARY  // monetary formats
 char *setlocale(int category, const char *locale) // category = "C" or "POSIX"
 ```
 
-## \<ctype.h>
+### \<ctype.h>
 
 ```c
 #include <ctype.h>
@@ -41,7 +58,7 @@ int tolower(int c)
 int toupper(int c)
 ```
 
-## \<string.h>
+### \<string.h>
 
 ```c
 #include <string.h>
@@ -75,11 +92,47 @@ char *strpbrk(const char *str, const char *set)
 char *strtok(char *str, const char *seps)
 ```
 
-## \<stdlib.h>
+### \<stdlib.h>
 
 ```c
 #include <stdlib.h>
 
 /* environment */
 char *getenv(const char *env_name)
+
+/* dynamic memory (heap) */
+void *malloc(size_t size)
+void free(void *p)
+```
+
+## POSIX C
+
+- System I/O
+
+### System I/O
+
+```c
+/* standard file descriptor */
+#include <unistd.h>
+STDIN_FILENO
+STDOUT_FILENO
+STDERR_FILENO
+
+/* Open a file */
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+int open(const char *path, int flags)
+
+/* Open flags */
+O_RDONLY
+O_WRONLY
+O_RDWR
+O_APPEND
+O_CREAT
+O_TRUNC
+
+/* Close a file */
+#include <unistd.h>
+int close(int fd)
 ```

@@ -131,6 +131,7 @@ char *gets(char *buf) // NOT used, use fgets() instead
 int fgetc(FILE *fp)
 int getc(FILE *fp)
 int getchar()
+int ungetc(int c, FILE *fp)
 ```
 
 ## POSIX C

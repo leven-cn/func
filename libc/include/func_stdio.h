@@ -283,4 +283,16 @@ extern int func_fgetc(FUNC_FILE *fp);
  */
 #define func_getchar() (func_getc(stdin))
 
+/**
+ * @fn int func_ungetc(int c, FUNC_FILE *fp);
+ * @brief Pushes character <var>c</var> back to file <var>fp</var>, cast to
+ * <code>unsigned char</code>, where it is available for subsequent read
+ * operations. Pushed-back characters will be returned in reverse order;
+ * <strong>only one</strong> pushback is guaranteed.
+ *
+ * @param fp a file pointer.
+ * @return character to push back.
+ */
+extern int func_ungetc(int c, FUNC_FILE *fp);
+
 #endif /* __FUNC_STDIO_H */

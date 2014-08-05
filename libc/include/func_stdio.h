@@ -255,4 +255,32 @@ extern int func_fputc(int c, FUNC_FILE *fp);
  */
 extern char *func_fgets(char *buf, int size, FUNC_FILE *fp);
 
+/**
+ * @fn int func_fgetc(FILE *fp);
+ * @brief Reads the next character from file <var>fp</var> and returns it as an
+ * <code>unsigned char</code> cast to an <code>int</code>, or <code>EOF</code>
+ * on end of file or error.
+ *
+ * @param fp file pointer to be read from.
+ * @return character to read or <code>EOF</code> on end of file or error.
+ */
+extern int func_fgetc(FUNC_FILE *fp);
+
+/**
+ * @fn int func_getc(FILE *fp);
+ * @brief A macro implementation of <code>fgetc()</code>.
+ *
+ * @param fp file pointer to be read from.
+ * @return character to read or <code>EOF</code> on end of file or error.
+ */
+#define func_getc(fp) (func_fgetc((fp)))
+
+/**
+ * @fn int func_getchar();
+ * @brief Equivalent to <code>getc(stdin)</code>.
+ *
+ * @return character to read or <code>EOF</code> on end of file or error.
+ */
+#define func_getchar() (func_getc(stdin))
+
 #endif /* __FUNC_STDIO_H */

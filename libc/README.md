@@ -122,8 +122,15 @@ int fopen(const char *path, const char *mode)
 int freopen(const char *path, const char *mode, FILE *fp)
 
 int fputs(const char *s, FILE *fp)
+int puts(const char *s)
+int fputc(int c, FILE *fp)
+int putc(int c, FILE *fp)
+int putchar(int c)
 char *fgets(char *buf, int size, FILE *fp)
 char *gets(char *buf) // NOT used, use fgets() instead
+int fgetc(FILE *fp)
+int getc(FILE *fp)
+int getchar()
 ```
 
 ## POSIX C

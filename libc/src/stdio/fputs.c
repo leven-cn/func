@@ -19,8 +19,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-static int _fputs(FUNC_FILE *fp);
-
 int func_fputs(const char *s, FUNC_FILE *fp)
 {
     while (*s) {
@@ -57,7 +55,7 @@ int func_fputs(const char *s, FUNC_FILE *fp)
     return 0;
 }
 
-static int _fputs(FUNC_FILE *fp)
+int _fputs(FUNC_FILE *fp)
 {
     if (fp->_next < fp->_wend) {
         return 0;

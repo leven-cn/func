@@ -22,8 +22,6 @@
 #include <stdlib.h>
 #include <errno.h>
 
-FUNC_FILE* _fopen(const char *path, const char *mode, FUNC_FILE *fp);
-
 /* Wrapper for POSIX API open() */
 static int _open(const char *path, FUNC_FILE *fp);
 

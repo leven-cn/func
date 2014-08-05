@@ -41,4 +41,7 @@
 /* internal implementation for fopen() & freopen() */
 extern FUNC_FILE* _fopen(const char *path, const char *mode, FUNC_FILE *fp);
 
+/* internal implementation for fputs() & fputc() */
+extern int _fputs(FUNC_FILE *fp);
+
 #endif /* ___STDIO_H */

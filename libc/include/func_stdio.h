@@ -186,7 +186,7 @@ extern FUNC_FILE *freopen(const char *path, const char *mode, FUNC_FILE *fp);
  * @brief Writes the string <var>s</var> to <var>fp</var>, without its
  * terminating null byte (<code>'\0'</code>).
  *
- * @param s string to be written to file.
+ * @param s string to be written to file <var>fp</var>.
  * @param fp file pointer to be written.
  * @return number of characters written for success, <code>EOF</code> for error
  * and <code>errno</code> is set.
@@ -202,6 +202,40 @@ extern int func_fputs(const char *s, FUNC_FILE *fp);
  * @return number of characters written for success, <code>EOF</code> for error
  * and <code>errno</code> is set.
  */
-#define puts(s) (fputs((s),stdout) < 0 || fputc('\n', stdout) < 0 ? EOF : 0)
+#define func_puts(s) \
+		(func_fputs((s),stdout) < 0 || func_fputc('\n', stdout) < 0 ? EOF : 0)
+
+/**
+ * @fn int func_fputc(int c, FUNC_FILE *fp)
+ * @brief Writes the character <var>c</var>, cast to an
+ * <code>unsigned char</code>, to file <var>fp</var>.
+ *
+ * @param c character to be written to file <var>fp</var>.
+ * @param fp file pointer to be written.
+ * @return character written cast to an <code>int</code> for success,
+ * <code>EOF</code> for error and <code>errno</code> is set.
+ */
+extern int func_fputc(int c, FUNC_FILE *fp);
+
+/**
+ * @fn int func_putc(int c, FUNC_FILE *fp)
+ * @brief A macro implementation of <code>fputc()</code>.
+ *
+ * @param c character to be written to file <var>fp</var>.
+ * @param fp file pointer to be written.
+ * @return character written cast to an <code>int</code> for success,
+ * <code>EOF</code> for error and <code>errno</code> is set.
+ */
+#define func_putc(c,fp) (func_fputc((c), (fp)))
+
+/**
+ * @fn int func_putchar(int c)
+ * @brief Equivalent to <code>putc(c, stdout)</code>.
+ *
+ * @param c character to be written to file <code>stdout</code>.
+ * @return character written cast to an <code>int</code> for success,
+ * <code>EOF</code> for error and <code>errno</code> is set.
+ */
+#define func_putchar(c) (func_putc((c), stdout))
 
 #endif /* __FUNC_STDIO_H */

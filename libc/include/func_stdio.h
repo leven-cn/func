@@ -84,4 +84,101 @@ extern FUNC_FILE *_files[FOPEN_MAX];
  */
 extern int func_fflush(FUNC_FILE *fp);
 
+/**
+ * @fn int func_fclsoe(FUNC_FILE *fp)
+ * @brief Flushes the stream pointed to by <var>fp</var> (writing any buffered
+ * output data using <code>fflush()</code> and closes the underlying file
+ * descriptor.
+ *
+ * @param fp file pointer to be closed.
+ * @return 0 for success, <code>EOF</code> for error and <code>errno</code> is
+ * set.
+ */
+extern int func_fclose(FUNC_FILE *fp);
+
+/**
+ * @fn FUNC_FILE* fopen(const char *path, const char *mode)
+ * @brief Opens the file whose name is the string pointed to by <var>path</var>
+ * and associates a stream with it.
+ *
+ * The argument <var>mode</var> points to a string beginning with one of the
+ * following sequences (possibly followed by additional characters, as
+ * described below):
+ *
+ *     r      Open text file for reading. The stream is
+ *            positioned at the beginning of the file.
+ *
+ *     r+     Open for reading and writing.  The  stream  is
+ *            positioned at the beginning of the file.
+ *
+ *     w      Truncate file to zero length or create text
+ *            file for writing.  The stream is positioned  at
+ *            the beginning of the file.
+ *
+ *     w+     Open for reading and writing. The file is created
+ *            if it does not exist, otherwise it is truncated.
+ *            The stream is positioned at the beginning of the file.
+ *
+ *     a      Open for appending (writing at end of file).
+ *            The  file is created if it does not exist. The
+ *            stream is positioned at the end of the file.
+ *
+ *     a+     Open for reading and appending (writing at end
+ *            of file).  The file is created if it does not
+ *            exist.  The initial file position  for  reading
+ *            is at the beginning of the file, but output is
+ *            always appended to the end of the file.
+ *
+ * @param path file path.
+ * @param mode file open mode.
+ * @return a FILE pointer for success, <code>NULL</code> for error and
+ * <code>errno</code> is set.
+ */
+extern FUNC_FILE* fopen(const char *path, const char *mode);
+
+/**
+ * @fn FUNC_FILE* freopen(const char *path, const char *mode, FUNC_FILE *fp)
+ * @brief Opens the file whose name is the string pointed to by <var>path</var>
+ * and associates the stream pointed to by <var>fp</var> with it. The original
+ * stream (if it exists) is closed.  The mode argument is used just as in the
+ * <code>fopen()</code> function. The primary use of the <code>freopen()</code>
+ * function is to change the file associated with a standard text stream
+ * (<code>stderr</code>, <code>stdin</code>, or <code>stdout</code>).
+ *
+ * The argument <var>mode</var> points to a string beginning with one of the
+ * following sequences (possibly followed by additional characters, as
+ * described below):
+ *
+ *     r      Open text file for reading. The stream is
+ *            positioned at the beginning of the file.
+ *
+ *     r+     Open for reading and writing.  The  stream  is
+ *            positioned at the beginning of the file.
+ *
+ *     w      Truncate file to zero length or create text
+ *            file for writing.  The stream is positioned  at
+ *            the beginning of the file.
+ *
+ *     w+     Open for reading and writing. The file is created
+ *            if it does not exist, otherwise it is truncated.
+ *            The stream is positioned at the beginning of the file.
+ *
+ *     a      Open for appending (writing at end of file).
+ *            The  file is created if it does not exist. The
+ *            stream is positioned at the end of the file.
+ *
+ *     a+     Open for reading and appending (writing at end
+ *            of file).  The file is created if it does not
+ *            exist.  The initial file position  for  reading
+ *            is at the beginning of the file, but output is
+ *            always appended to the end of the file.
+ *
+ * @param path file path.
+ * @param mode file open mode.
+ * @param fp FILE pointer to re-open stream.
+ * @return a FILE pointer for success, <code>NULL</code> for error and
+ * <code>errno</code> is set.
+ */
+extern FUNC_FILE *freopen(const char *path, const char *mode, FUNC_FILE *fp);
+
 #endif /* __FUNC_STDIO_H */

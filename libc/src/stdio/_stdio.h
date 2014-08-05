@@ -35,5 +35,10 @@
 #define _FM_EOF         (0xF0)   /* end of stream */
 #define _FM_READ        (0x100)  /* stream is read */
 #define _FM_WRITE       (0x200)  /* stream is written */
+#define _FM_TRUNC       (0x400)  /* stream is trunct */
+#define _FM_CREAT       (0x800)  /* stream is created */
+
+/* internal implementation for fopen() & freopen() */
+extern FUNC_FILE* _fopen(const char *path, const char *mode, FUNC_FILE *fp);
 
 #endif /* ___STDIO_H */

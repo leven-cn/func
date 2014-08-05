@@ -10,6 +10,7 @@
 - \<ctype.h>
 - \<string.h>
 - \<stdlib.h>
+- \<stdio.h>
 
 ### \<stddef.h>
 
@@ -105,6 +106,20 @@ void *malloc(size_t size)
 void free(void *p)
 ```
 
+### \<stdio.h>
+
+```c
+#include <stdio.h>
+
+stdin
+stdout
+stderr
+
+int fflush(FILE *fp)
+
+int fclose(FILE *fp)
+```
+
 ## POSIX C
 
 - System I/O
@@ -123,6 +138,7 @@ STDERR_FILENO
 #include <sys/stat.h>
 #include <fcntl.h>
 int open(const char *path, int flags)
+int open(const char *path, int flags, mode_t mode)
 
 /* Open flags */
 O_RDONLY
@@ -131,6 +147,17 @@ O_RDWR
 O_APPEND
 O_CREAT
 O_TRUNC
+
+/* Open mode */
+S_IRUSR
+S_IWUSR
+S_IXUSR
+S_IRGRP
+S_IWGRP
+S_IXGRP
+S_IROTH
+S_IWOTH
+S_IXOTH
 
 /* Close a file */
 #include <unistd.h>

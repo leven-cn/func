@@ -326,4 +326,32 @@ extern int func_ferror(FUNC_FILE *fp);
  */
 extern void func_clearerr(FUNC_FILE *fp);
 
+/**
+ * @fn int func_setvbuf(FUNC_FILE *fp, char *buf, int mode, size_t size);
+ * @brief Set the buffer of the file pointed to by <var>fp</var>.
+ *
+ * The <var>mode</var> argument must be one of the following three macros:
+ *
+ *      <code>_IONBF</code> unbuffered
+ *
+ *      <code>_IOLBF</code> line buffered
+ *
+ *      <code>_IOFBF</code> fully buffered
+ *
+ * @param fp a file pointer to be cleared.
+ * @param buf new buffer to used by file <var>fp</var>.
+ * @param mode buffer mode.
+ * @param size buffer size.
+ */
+extern int setvbuf(FUNC_FILE *fp, char *buf, int mode, size_t size);
+
+/**
+ * @fn void func_setbuf(FUNC_FILE *fp, char *buf);
+ * @brief Set the buffer of the file pointed to by <var>fp</var>.
+ *
+ * @param fp a file pointer to be cleared.
+ * @param buf new buffer to used by file <var>fp</var>.
+ */
+#define func_setbuf(f,b) (func_setvbuf((f),(b),((b)?_IOFBF:_IONBF,BUFSIZ)))
+
 #endif /* __FUNC_STDIO_H */

@@ -136,6 +136,13 @@ int ungetc(int c, FILE *fp)
 int feof(FILE *fp)
 int ferror(FILE *fp)
 void clearerr(FILE *fp)
+
+/* buffer mode */
+_IONBF
+_IOLBF
+_IOFBF
+int setvbuf(FILE *fp, char *buf, int mode, size_t size)
+int setbuf(FILE *fp, char *buf)
 ```
 
 ## POSIX C

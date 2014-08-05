@@ -15,11 +15,6 @@
  */
 
 #include "_stdio.h"
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdlib.h>
 #include <errno.h>
 
 FUNC_FILE *freopen(const char *path, const char *mode, FUNC_FILE *fp)

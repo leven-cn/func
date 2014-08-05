@@ -8,6 +8,8 @@ PROG = test_stdio.exe
 
 SRCS = $(notdir $(wildcard *.c))
 OBJS = $(subst .c,.o,$(SRCS))
+DEPS = $(TOPDIR)/src/string/strchr.o $(TOPDIR)/src/string/strlen.o \
+		$(TOPDIR)/src/string/memcpy.o
 
 %.o : %.c
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
@@ -15,7 +17,7 @@ OBJS = $(subst .c,.o,$(SRCS))
 .PHONY: all clean test
 	
 all: $(OBJS)
-	$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) -o $(PROG) $^
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) -o $(PROG) $^ $(DEPS)
 	@echo Build stdio done
 
 clean:

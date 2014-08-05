@@ -85,7 +85,7 @@ extern FUNC_FILE *_files[FOPEN_MAX];
 extern int func_fflush(FUNC_FILE *fp);
 
 /**
- * @fn int func_fclsoe(FUNC_FILE *fp)
+ * @fn int func_fclose(FUNC_FILE *fp)
  * @brief Flushes the stream pointed to by <var>fp</var> (writing any buffered
  * output data using <code>fflush()</code> and closes the underlying file
  * descriptor.
@@ -180,5 +180,28 @@ extern FUNC_FILE* fopen(const char *path, const char *mode);
  * <code>errno</code> is set.
  */
 extern FUNC_FILE *freopen(const char *path, const char *mode, FUNC_FILE *fp);
+
+/**
+ * @fn int func_fputs(const char *s, FUNC_FILE *fp)
+ * @brief Writes the string <var>s</var> to <var>fp</var>, without its
+ * terminating null byte (<code>'\0'</code>).
+ *
+ * @param s string to be written to file.
+ * @param fp file pointer to be written.
+ * @return number of characters written for success, <code>EOF</code> for error
+ * and <code>errno</code> is set.
+ */
+extern int func_fputs(const char *s, FUNC_FILE *fp);
+
+/**
+ * @fn int func_puts(const char *s)
+ * @brief Writes the string <var>s</var> to <code>stdout</code>, with
+ * terminating null byte (<code>'\0'</code>).
+ *
+ * @param s string to be written to <code>stdout</code>.
+ * @return number of characters written for success, <code>EOF</code> for error
+ * and <code>errno</code> is set.
+ */
+#define puts(s) (fputs((s),stdout) < 0 || fputc('\n', stdout) < 0 ? EOF : 0)
 
 #endif /* __FUNC_STDIO_H */

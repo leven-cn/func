@@ -238,4 +238,21 @@ extern int func_fputc(int c, FUNC_FILE *fp);
  */
 #define func_putchar(c) (func_putc((c), stdout))
 
+/**
+ * @fn int func_fgets(char *buf, int size, FUNC_FILE *fp)
+ * @brief Reads in at most one less than <var>size</var> characters from file
+ * <var>fp</var> and stores them into the buffer pointed to by <var>buf</var>.
+ * Reading stops after an <code>EOF</code> or a newline. If a newline is read,
+ * it is stored into the buffer. A terminating null byte (<code>'\0'</code>) is
+ * stored after the last character in the buffer.
+ *
+ * @warning Never use <code>gets()</code>
+ *
+ * @param buf string buffer to get reading characters.
+ * @param size number of characters to read from file.
+ * @return pointer to <var>buf</var> for success, <code>NULL</code> for error
+ * and <code>errno</code> is set.
+ */
+extern char *func_fgets(char *buf, int size, FUNC_FILE *fp);
+
 #endif /* __FUNC_STDIO_H */

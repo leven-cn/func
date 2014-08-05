@@ -9,7 +9,7 @@ PROG = test_stdio.exe
 SRCS = $(notdir $(wildcard *.c))
 OBJS = $(subst .c,.o,$(SRCS))
 DEPS = $(TOPDIR)/src/string/strchr.o $(TOPDIR)/src/string/strlen.o \
-		$(TOPDIR)/src/string/memcpy.o
+		$(TOPDIR)/src/string/memcpy.o $(TOPDIR)/src/string/memchr.o
 
 %.o : %.c
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@

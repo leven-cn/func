@@ -132,6 +132,10 @@ int fgetc(FILE *fp)
 int getc(FILE *fp)
 int getchar()
 int ungetc(int c, FILE *fp)
+
+int feof(FILE *fp)
+int ferror(FILE *fp)
+void clearerr(FILE *fp)
 ```
 
 ## POSIX C

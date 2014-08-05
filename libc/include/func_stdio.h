@@ -285,7 +285,7 @@ extern int func_fgetc(FUNC_FILE *fp);
 
 /**
  * @fn int func_ungetc(int c, FUNC_FILE *fp);
- * @brief Pushes character <var>c</var> back to file <var>fp</var>, cast to
+ * @brief Push character <var>c</var> back to file <var>fp</var>, cast to
  * <code>unsigned char</code>, where it is available for subsequent read
  * operations. Pushed-back characters will be returned in reverse order;
  * <strong>only one</strong> pushback is guaranteed.
@@ -294,5 +294,36 @@ extern int func_fgetc(FUNC_FILE *fp);
  * @return character to push back.
  */
 extern int func_ungetc(int c, FUNC_FILE *fp);
+
+/**
+ * @fn int func_feof(FUNC_FILE *fp);
+ * @brief Test the end-of-file indicator for the file pointed to by
+ * <var>fp</var>, returning non-zero if it is set. The end-of-file indicator
+ * can be cleared only by the function <code>clearerr()</code>.
+ *
+ * @param fp a file pointer to be checked.
+ * @return non-zero if it is set.
+ */
+extern int func_feof(FUNC_FILE *fp);
+
+/**
+ * @fn int func_ferror(FUNC_FILE *fp);
+ * @brief Test the error indicator for the file pointed to by <var>fp</var>,
+ * returning non-zero if it is set. The error indicator can be reset only by
+ * the <code>clearerr()</code> function.
+ *
+ * @param fp a file pointer to be checked.
+ * @return non-zero if it is set.
+ */
+extern int func_ferror(FUNC_FILE *fp);
+
+/**
+ * @fn void func_clearerr(FUNC_FILE *fp);
+ * @brief Clear the end-of-file and error indicators for the file pointed to by
+ * <var>fp</var>.
+ *
+ * @param fp a file pointer to be cleared.
+ */
+extern void func_clearerr(FUNC_FILE *fp);
 
 #endif /* __FUNC_STDIO_H */

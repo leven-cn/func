@@ -278,4 +278,5 @@ S_IXOTH    00001     // others have execute permission
 int link(const char *src, const char *dst);
 int unlink(const char *path);
 int rmdir(const char *path);
+char *getcwd(char *buf, size_t size); /* PATH_MAX */
 ```

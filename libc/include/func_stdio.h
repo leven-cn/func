@@ -450,4 +450,18 @@ extern int func_fsetpos(FUNC_FILE *fp, const fpos_t *pos);
  */
 extern int func_remove(const char *path);
 
+/**
+ * @fn int func_rename(const char *src, const char *dst)
+ * @brief Rename a file, moving it between directories if required.
+ *
+ * If <var>dst</var> already exists it will be atomically replaced, so that
+ * there is no point at which another process attempting to access <dst> will
+ * find it missing.
+ *
+ * @param src original path name.
+ * @param dst destination path name.
+ * @return 0 for success, or -1 for error and <code>errno</code> is set.
+ */
+extern int func_rename(const char *src, const char *dst);
+
 #endif /* __FUNC_STDIO_H */

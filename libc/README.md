@@ -17,7 +17,7 @@
 ```c
 #include <stddef.h>
 
-NULL
+NULL  ((void *)0)
 
 size_t
 ```
@@ -34,7 +34,7 @@ LC_TIME      // time and date formats
 LC_NUMERIC   // number formats
 LC_MONETARY  // monetary formats
 
-char *setlocale(int category, const char *locale) // category = "C" or "POSIX"
+char *setlocale(int category, const char *locale); // category = "C" or "POSIX"
 ```
 
 ### \<ctype.h>
@@ -42,21 +42,21 @@ char *setlocale(int category, const char *locale) // category = "C" or "POSIX"
 ```c
 #include <ctype.h>
 
-int isalpha(int c)
-int isdigit(int c)
-int isalnum(int c)
-int isxdigit(int c)
-int isblank(int c) // New in C99
-int isspace(int c)
-int isupper(int c)
-int islower(int c)
-int iscntrl(int c)
-int isgraph(int c)
-int isprint(int c)
-int ispunct(int c)
+int isalpha(int c);
+int isdigit(int c);
+int isalnum(int c);
+int isxdigit(int c);
+int isblank(int c); // New in C99
+int isspace(int c);
+int isupper(int c);
+int islower(int c);
+int iscntrl(int c);
+int isgraph(int c);
+int isprint(int c);
+int ispunct(int c);
 
-int tolower(int c)
-int toupper(int c)
+int tolower(int c);
+int toupper(int c);
 ```
 
 ### \<string.h>
@@ -64,33 +64,33 @@ int toupper(int c)
 ```c
 #include <string.h>
 
-size_t strlen(const char *str)
+size_t strlen(const char *str);
 
-int strcmp(const char *s1, const char *s2)
-int strncmp(const cahr *s1, const char *s2, size_t n)
-int memcmp(const void *p1, const void *p2, size_t n)
+int strcmp(const char *s1, const char *s2);
+int strncmp(const cahr *s1, const char *s2, size_t n);
+int memcmp(const void *p1, const void *p2, size_t n);
 
-char *strcat(char *dst, const char *src) // NOT used, use strncat() instead
-char *strncat(char *dst, const char *src, size_t n)
+char *strcat(char *dst, const char *src); // NOT used, use strncat() instead
+char *strncat(char *dst, const char *src, size_t n);
 
-char *strcpy(char *dst, const char *src) // NOT used, use strncpy() instead
-char *strncpy(char *dst, const char *src, size_t n)
-void *memcpy(void *dst, const void *src, size_t n)
-void *memmove(void *dst, const void *src, size_t n)
+char *strcpy(char *dst, const char *src); // NOT used, use strncpy() instead
+char *strncpy(char *dst, const char *src, size_t n);
+void *memcpy(void *dst, const void *src, size_t n);
+void *memmove(void *dst, const void *src, size_t n);
 
-void memset(void *ptr, int val, size_t n)
+void memset(void *ptr, int val, size_t n);
 
-char *strchr(const char *str, int c)
-char *strrchr(const char *str, int c)
-void *memchr(const void *ptr, int val, size_t len)
+char *strchr(const char *str, int c);
+char *strrchr(const char *str, int c);
+void *memchr(const void *ptr, int val, size_t len);
 
-char *strstr(const char *str, const char *sub)
+char *strstr(const char *str, const char *sub);
 
-size_t strspn(const char *str, const char *set)
-size_t strcspn(const char *str, const char *set)
-char *strpbrk(const char *str, const char *set)
+size_t strspn(const char *str, const char *set);
+size_t strcspn(const char *str, const char *set);
+char *strpbrk(const char *str, const char *set);
 
-char *strtok(char *str, const char *seps)
+char *strtok(char *str, const char *seps);
 ```
 
 ### \<stdlib.h>
@@ -99,11 +99,11 @@ char *strtok(char *str, const char *seps)
 #include <stdlib.h>
 
 /* environment */
-char *getenv(const char *env_name)
+char *getenv(const char *env_name);
 
 /* dynamic memory (heap) */
-void *malloc(size_t size)
-void free(void *p)
+void *malloc(size_t size);
+void free(void *p);
 ```
 
 ### \<stdio.h>
@@ -115,45 +115,46 @@ stdin
 stdout
 stderr
 
-int fflush(FILE *fp)
+int fflush(FILE *fp);
 
-int fclose(FILE *fp)
-int fopen(const char *path, const char *mode)
-int freopen(const char *path, const char *mode, FILE *fp)
+int fclose(FILE *fp);
+int fopen(const char *path, const char *mode);
+int freopen(const char *path, const char *mode, FILE *fp);
 
-int fputs(const char *s, FILE *fp)
-int puts(const char *s)
-int fputc(int c, FILE *fp)
-int putc(int c, FILE *fp)
-int putchar(int c)
-char *fgets(char *buf, int size, FILE *fp)
-char *gets(char *buf) // NOT used, use fgets() instead
-int fgetc(FILE *fp)
-int getc(FILE *fp)
-int getchar()
-int ungetc(int c, FILE *fp)
+int fputs(const char *s, FILE *fp);
+int puts(const char *s);
+int fputc(int c, FILE *fp);
+int putc(int c, FILE *fp);
+int putchar(int c);
+char *fgets(char *buf, int size, FILE *fp);
+char *gets(char *buf); // NOT used, use fgets() instead
+int fgetc(FILE *fp);
+int getc(FILE *fp);
+int getchar();
+int ungetc(int c, FILE *fp);
 
-int feof(FILE *fp)
-int ferror(FILE *fp)
-void clearerr(FILE *fp)
+int feof(FILE *fp);
+int ferror(FILE *fp);
+void clearerr(FILE *fp);
 
-int setvbuf(FILE *fp, char *buf, int mode, size_t size)
-int setbuf(FILE *fp, char *buf)
+int setvbuf(FILE *fp, char *buf, int mode, size_t size);
+int setbuf(FILE *fp, char *buf);
 
 /* setvbuf()/setbuf() mode */
 _IONBF
 _IOLBF
 _IOFBF
 
-long ftell(FILE *fp)
-int fseek(FILE *fp, long offset, int whence)
+long ftell(FILE *fp);
+int fseek(FILE *fp, long offset, int whence);
 
 /* fseek() whence */
-SEEK_SET
-SEEK_CUR
-SEEK_END
+SEEK_SET  (0)
+SEEK_CUR  (1)
+SEEK_END  (2)
 
-int remove(const char *path)
+int remove(const char *path);
+int rename(const char *src, const char *dst);
 ```
 
 ## POSIX C
@@ -165,9 +166,9 @@ int remove(const char *path)
 ```c
 /* standard file descriptor */
 #include <unistd.h>
-STDIN_FILENO    0
-STDOUT_FILENO   1
-STDERR_FILENO   2
+STDIN_FILENO    (0)
+STDOUT_FILENO   (0)
+STDERR_FILENO   (0)
 
 /* Open a file */
 #include <sys/types.h>
@@ -210,9 +211,9 @@ ssize_t write(int fd, const void *buf, size_t size);
 off_t lseek(int fd, off_t offset, int whence);
 
 /* lseek() whence */
-SEEK_SET
-SEEK_CUR
-SEEK_END
+SEEK_SET  (0)
+SEEK_CUR  (1)
+SEEK_END  (2)
 
 /* File Status */
 #include <sys/types.h>
@@ -272,11 +273,9 @@ S_IROTH    00004     // others have read permission
 S_IWOTH    00002     // others have write permission
 S_IXOTH    00001     // others have execute permission
 
-/* Remove an empty directory */
+/* File system */
 #include <unistd.h>
-int rmdir(const char *path);
-
-/* Delete a name from file system */
-#include <unistd.h>
+int link(const char *src, const char *dst);
 int unlink(const char *path);
+int rmdir(const char *path);
 ```

@@ -2,31 +2,26 @@
 
 -include $(TOPDIR)/../def.mk
 
-PROG = pwd.exe
-
 SRCS = $(notdir $(wildcard *.c))
-OBJS = $(subst .c,.o,$(SRCS))
-DEPS =
+PROG = $(subst .c,.exe,$(SRCS))
 LOGS = $(notdir $(wildcard *.log))
 DIFF = $(notdir $(wildcard *.diff))
 
-%.o : %.c
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+%.exe : %.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) $< -o $@
 
 .PHONY: all clean test
 	
-all: $(OBJS)
-	$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) -o $(PROG) $^ $(DEPS)
+all: $(PROG)
 	@echo Build $(PROG) done
 
 clean:
-	-$(RM) $(PROG) $(OBJS) $(LOGS) $(DIFF)
+	-$(RM) $(PROG) $(LOGS) $(DIFF)
 	@echo Clean $(PROG) done
 	
 test:
 	chmod u+x $(PROG)
 	
-	# Test pwd
 	./pwd.exe > test.log
 	pwd > std.log
 	./pwd.exe -L >> test.log

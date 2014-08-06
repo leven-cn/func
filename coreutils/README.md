@@ -1,3 +1,4 @@
 # coreutils Package
 
+- echo
 - pwd

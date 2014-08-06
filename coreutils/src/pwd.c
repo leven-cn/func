@@ -1,6 +1,8 @@
 /**
  * pwd - Print current directory.
  *
+ * This program will be useless, and, of course, WITHOUT ANY WARRANTY.
+ *
  * The official source codes could be found in any source listed below:
  *
  *     * git://git.sv.gnu.org/coreutils.git

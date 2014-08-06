@@ -14,9 +14,9 @@ all:
 	@echo Build done
 
 clean:
-	$(MAKE) -C $(SRCDIR) clean
+	$(MAKE) -C $(SRCDIR) clean -e TOPDIR=../$(TOPDIR)
 	@echo Clean done
 	
 test:
-	$(MAKE) -C $(SRCDIR) test
+	$(MAKE) -C $(SRCDIR) test -e TOPDIR=../$(TOPDIR)
 	@echo Test done

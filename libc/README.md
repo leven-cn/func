@@ -137,12 +137,21 @@ int feof(FILE *fp)
 int ferror(FILE *fp)
 void clearerr(FILE *fp)
 
-/* buffer mode */
+int setvbuf(FILE *fp, char *buf, int mode, size_t size)
+int setbuf(FILE *fp, char *buf)
+
+/* setvbuf()/setbuf() mode */
 _IONBF
 _IOLBF
 _IOFBF
-int setvbuf(FILE *fp, char *buf, int mode, size_t size)
-int setbuf(FILE *fp, char *buf)
+
+long ftell(FILE *fp)
+int fseek(FILE *fp, long offset, int whence)
+
+/* fseek() whence */
+SEEK_SET
+SEEK_CUR
+SEEK_END
 ```
 
 ## POSIX C
@@ -165,7 +174,7 @@ STDERR_FILENO
 int open(const char *path, int flags)
 int open(const char *path, int flags, mode_t mode)
 
-/* Open flags */
+/* open() flags */
 O_RDONLY
 O_WRONLY
 O_RDWR
@@ -173,7 +182,7 @@ O_APPEND
 O_CREAT
 O_TRUNC
 
-/* Open mode */
+/* open() mode */
 S_IRUSR
 S_IWUSR
 S_IXUSR
@@ -188,8 +197,18 @@ S_IXOTH
 #include <unistd.h>
 int close(int fd)
 
-/* basic Read/Write */
+/* Basic Read/Write */
 #include <unistd.h>
 ssize_t read(int fd, void *buf, size_t size)
 ssize_t write(int fd, const void *buf, size_t size)
+
+/* File Offset */
+#include <sys/types.h>
+#include <unistd.h>
+off_t lseek(int fd, off_t offset, int whence)
+
+/* lseek() whence */
+SEEK_SET
+SEEK_CUR
+SEEK_END
 ```

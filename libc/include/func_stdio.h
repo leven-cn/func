@@ -34,12 +34,12 @@
 #define NULL ((void *)0)
 #endif /* NULL */
 
-/* buffering */
+/* setvbuf(): buffering */
 #define _IOFBF  (0)  /* fully buffered */
 #define _IOLBF  (1)  /* line buffered */
 #define _IONBF  (2)  /* no buffered */
 
-/* file position */
+/* fseek(): file position */
 #define SEEK_SET (0)
 #define SEEK_CUR (1)
 #define SEEK_END (2)
@@ -59,6 +59,11 @@ typedef struct _FUNC_FILE {
     unsigned char cbuf;      /* one-character buffer when no buffer available */
     unsigned int _index;     /* index for internal file arrays */
 } FUNC_FILE;
+
+/* file position object */
+typedef struct _fpos {
+    unsigned long _offset;   /* system-dependent */
+} fpos_t;
 
 /* internal file object table */
 extern FUNC_FILE *_files[FOPEN_MAX];
@@ -256,7 +261,7 @@ extern int func_fputc(int c, FUNC_FILE *fp);
 extern char *func_fgets(char *buf, int size, FUNC_FILE *fp);
 
 /**
- * @fn int func_fgetc(FILE *fp);
+ * @fn int func_fgetc(FILE *fp)
  * @brief Reads the next character from file <var>fp</var> and returns it as an
  * <code>unsigned char</code> cast to an <code>int</code>, or <code>EOF</code>
  * on end of file or error.
@@ -267,7 +272,7 @@ extern char *func_fgets(char *buf, int size, FUNC_FILE *fp);
 extern int func_fgetc(FUNC_FILE *fp);
 
 /**
- * @fn int func_getc(FILE *fp);
+ * @fn int func_getc(FILE *fp)
  * @brief A macro implementation of <code>fgetc()</code>.
  *
  * @param fp file pointer to be read from.
@@ -276,7 +281,7 @@ extern int func_fgetc(FUNC_FILE *fp);
 #define func_getc(fp) (func_fgetc((fp)))
 
 /**
- * @fn int func_getchar();
+ * @fn int func_getchar()
  * @brief Equivalent to <code>getc(stdin)</code>.
  *
  * @return character to read or <code>EOF</code> on end of file or error.
@@ -284,7 +289,7 @@ extern int func_fgetc(FUNC_FILE *fp);
 #define func_getchar() (func_getc(stdin))
 
 /**
- * @fn int func_ungetc(int c, FUNC_FILE *fp);
+ * @fn int func_ungetc(int c, FUNC_FILE *fp)
  * @brief Push character <var>c</var> back to file <var>fp</var>, cast to
  * <code>unsigned char</code>, where it is available for subsequent read
  * operations. Pushed-back characters will be returned in reverse order;
@@ -296,7 +301,7 @@ extern int func_fgetc(FUNC_FILE *fp);
 extern int func_ungetc(int c, FUNC_FILE *fp);
 
 /**
- * @fn int func_feof(FUNC_FILE *fp);
+ * @fn int func_feof(FUNC_FILE *fp)
  * @brief Test the end-of-file indicator for the file pointed to by
  * <var>fp</var>, returning non-zero if it is set. The end-of-file indicator
  * can be cleared only by the function <code>clearerr()</code>.
@@ -307,7 +312,7 @@ extern int func_ungetc(int c, FUNC_FILE *fp);
 extern int func_feof(FUNC_FILE *fp);
 
 /**
- * @fn int func_ferror(FUNC_FILE *fp);
+ * @fn int func_ferror(FUNC_FILE *fp)
  * @brief Test the error indicator for the file pointed to by <var>fp</var>,
  * returning non-zero if it is set. The error indicator can be reset only by
  * the <code>clearerr()</code> function.
@@ -318,7 +323,7 @@ extern int func_feof(FUNC_FILE *fp);
 extern int func_ferror(FUNC_FILE *fp);
 
 /**
- * @fn void func_clearerr(FUNC_FILE *fp);
+ * @fn void func_clearerr(FUNC_FILE *fp)
  * @brief Clear the end-of-file and error indicators for the file pointed to by
  * <var>fp</var>.
  *
@@ -327,7 +332,7 @@ extern int func_ferror(FUNC_FILE *fp);
 extern void func_clearerr(FUNC_FILE *fp);
 
 /**
- * @fn int func_setvbuf(FUNC_FILE *fp, char *buf, int mode, size_t size);
+ * @fn int func_setvbuf(FUNC_FILE *fp, char *buf, int mode, size_t size)
  * @brief Set the buffer of the file pointed to by <var>fp</var>.
  *
  * The <var>mode</var> argument must be one of the following three macros:
@@ -338,20 +343,90 @@ extern void func_clearerr(FUNC_FILE *fp);
  *
  *      <code>_IOFBF</code> fully buffered
  *
- * @param fp a file pointer to be cleared.
+ * @param fp a file pointer to be set buffer.
  * @param buf new buffer to used by file <var>fp</var>.
  * @param mode buffer mode.
  * @param size buffer size.
+ * @return 0 for success, or non-zero for failure and <code>errno</code> is set.
  */
 extern int setvbuf(FUNC_FILE *fp, char *buf, int mode, size_t size);
 
 /**
- * @fn void func_setbuf(FUNC_FILE *fp, char *buf);
+ * @fn void func_setbuf(FUNC_FILE *fp, char *buf)
  * @brief Set the buffer of the file pointed to by <var>fp</var>.
  *
- * @param fp a file pointer to be cleared.
+ * @param fp a file pointer to be set buffer.
  * @param buf new buffer to used by file <var>fp</var>.
  */
 #define func_setbuf(f,b) (func_setvbuf((f),(b),((b)?_IOFBF:_IONBF,BUFSIZ)))
+
+/**
+ * @fn long func_ftell(FUNC_FILE *fp)
+ * @brief Obtain the current value of the file position indicator for the file
+ * pointed to by <var>fp</var>.
+ *
+ * @param fp a file pointer.
+ * @return current offset, or -1 for error and <code>errno</code> is set.
+ */
+extern long func_ftell(FUNC_FILE *fp);
+
+/**
+ * @fn int func_fseek(FUNC_FILE *fp, long offset, int whence)
+ * @brief Set the file position indicator for the file pointed to by
+ * <var>fp</var>.  The new position, measured in bytes, is obtained by adding
+ * <var>offset</var> bytes to the position specified by <var>whence</var>. If
+ * <var>whence</var> is set to <code>SEEK_SET</code>, <code>SEEK_CUR</code>, or
+ * <code>SEEK_END</code>, the <var>offset</var> is relative to the start of the
+ * file, the current position indicator, or end-of-file, respectively. A
+ * successful call to the <code>fseek()</code> function clears the end-of-file
+ * indicator for the file stream and undoes any effects of the
+ * <code>ungetc()</code> function on the same file stream.
+ *
+ * @param fp a file pointer.
+ * @param offset file offset to be set.
+ * @param whence file position.
+ * @return 0 for success, or -1 for error and <code>errno</code> is set.
+ */
+extern int func_fseek(FUNC_FILE *fp, long offset, int whence);
+
+/**
+ * @fn void func_rewind(FUNC_FILE *fp)
+ * @brief Set the file position indicator for the file stream pointed to by
+ * <var>fp</var> to the beginning of the file. It is equivalent to:
+ *
+ *       (void) fseek(fp, 0L, SEEK_SET)
+ *
+ * except that the error indicator for the file stream is also cleared.
+ *
+ * @param fp a file pointer.
+ */
+extern void func_rewind(FUNC_FILE *fp);
+
+/**
+ * @fn int func_fgetpos(FUNC_FILE *fp, fpos_t *pos)
+ * @brief Obtains the current value of the file position indicator for the file
+ * pointed to by <var>fp</var>.
+ *
+ * @param fp a file pointer.
+ * @param pos current file position.
+ * @return 0 for success, or -1 for error and <code>errno</code> is set.
+ */
+extern int func_fgetpos(FUNC_FILE *fp, fpos_t *pos);
+
+/**
+ * @fn int func_fsetpos(FUNC_FILE *fp, const fpos_t *pos)
+ * @brief Set the file position indicator for the file pointed to by
+ * <var>fp</var>.  The new position, measured in bytes, is obtained by adding
+ * bytes to the position specified by <var>pos</var>. A successful call to the
+ * <code>fsetpos()</code> function clears the end-of-file indicator for the
+ * file stream and undoes any effects of the <code>ungetc()</code> function on
+ * the same file stream.
+ *
+ * @param fp a file pointer.
+ * @param pos file position to be set.
+ * @param whence file position.
+ * @return 0 for success, or -1 for error and <code>errno</code> is set.
+ */
+extern int func_fsetpos(FUNC_FILE *fp, const fpos_t *pos);
 
 #endif /* __FUNC_STDIO_H */

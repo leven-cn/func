@@ -78,7 +78,7 @@ extern FUNC_FILE *_files[FOPEN_MAX];
  * @brief For output streams, <code>fflush()</code> forces a write of all
  * user-space buffered data for the given output or update stream via the
  * stream's underlying write function. For input streams, <code>fflush()</code>
- * discards any buffered  data that has been fetched from the underlying file,
+ * discards any buffered data that has been fetched from the underlying file,
  * but has not been consumed by the application. The open status of the stream
  * is unaffected.
  *
@@ -145,10 +145,12 @@ extern FUNC_FILE* fopen(const char *path, const char *mode);
  * @fn FUNC_FILE* freopen(const char *path, const char *mode, FUNC_FILE *fp)
  * @brief Opens the file whose name is the string pointed to by <var>path</var>
  * and associates the stream pointed to by <var>fp</var> with it. The original
- * stream (if it exists) is closed.  The mode argument is used just as in the
- * <code>fopen()</code> function. The primary use of the <code>freopen()</code>
- * function is to change the file associated with a standard text stream
- * (<code>stderr</code>, <code>stdin</code>, or <code>stdout</code>).
+ * stream (if it exists) is closed. The <var>mode</var> argument is used just
+ * as in the <code>fopen()</code> function.
+ *
+ * The primary use of the <code>freopen()</code> function is to change the file
+ * associated with a standard text stream (<code>stderr</code>,
+ * <code>stdin</code>, or <code>stdout</code>).
  *
  * The argument <var>mode</var> points to a string beginning with one of the
  * following sequences (possibly followed by additional characters, as
@@ -373,13 +375,14 @@ extern long func_ftell(FUNC_FILE *fp);
 /**
  * @fn int func_fseek(FUNC_FILE *fp, long offset, int whence)
  * @brief Set the file position indicator for the file pointed to by
- * <var>fp</var>.  The new position, measured in bytes, is obtained by adding
+ * <var>fp</var>. The new position, measured in bytes, is obtained by adding
  * <var>offset</var> bytes to the position specified by <var>whence</var>. If
  * <var>whence</var> is set to <code>SEEK_SET</code>, <code>SEEK_CUR</code>, or
  * <code>SEEK_END</code>, the <var>offset</var> is relative to the start of the
- * file, the current position indicator, or end-of-file, respectively. A
- * successful call to the <code>fseek()</code> function clears the end-of-file
- * indicator for the file stream and undoes any effects of the
+ * file, the current position indicator, or end-of-file, respectively.
+ *
+ * A successful call to the <code>fseek()</code> function clears the
+ * end-of-file indicator for the file stream and undoes any effects of the
  * <code>ungetc()</code> function on the same file stream.
  *
  * @param fp a file pointer.
@@ -416,11 +419,12 @@ extern int func_fgetpos(FUNC_FILE *fp, fpos_t *pos);
 /**
  * @fn int func_fsetpos(FUNC_FILE *fp, const fpos_t *pos)
  * @brief Set the file position indicator for the file pointed to by
- * <var>fp</var>.  The new position, measured in bytes, is obtained by adding
- * bytes to the position specified by <var>pos</var>. A successful call to the
- * <code>fsetpos()</code> function clears the end-of-file indicator for the
- * file stream and undoes any effects of the <code>ungetc()</code> function on
- * the same file stream.
+ * <var>fp</var>. The new position, measured in bytes, is obtained by adding
+ * bytes to the position specified by <var>pos</var>.
+ *
+ * A successful call to the <code>fsetpos()</code> function clears the
+ * end-of-file indicator for the file stream and undoes any effects of the
+ * <code>ungetc()</code> function on the same file stream.
  *
  * @param fp a file pointer.
  * @param pos file position to be set.
@@ -428,5 +432,22 @@ extern int func_fgetpos(FUNC_FILE *fp, fpos_t *pos);
  * @return 0 for success, or -1 for error and <code>errno</code> is set.
  */
 extern int func_fsetpos(FUNC_FILE *fp, const fpos_t *pos);
+
+/**
+ * @fn int func_remove(const char *path)
+ * @brief Remove a name from the file system.
+ *
+ * If the removed name was the last link to a file and no processes have the
+ * file open, the file is deleted and the space it was using is made available
+ * for reuse.
+ *
+ * If the name was the last link to a file, but any processes still have the
+ * file open, the file will remain in existence until the last file descriptor
+ * referring to it is closed.
+ *
+ * @param path path name.
+ * @return 0 for success, or -1 for error and <code>errno</code> is set.
+ */
+extern int func_remove(const char *path);
 
 #endif /* __FUNC_STDIO_H */

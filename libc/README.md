@@ -152,6 +152,8 @@ int fseek(FILE *fp, long offset, int whence)
 SEEK_SET
 SEEK_CUR
 SEEK_END
+
+int remove(const char *path)
 ```
 
 ## POSIX C
@@ -163,16 +165,16 @@ SEEK_END
 ```c
 /* standard file descriptor */
 #include <unistd.h>
-STDIN_FILENO
-STDOUT_FILENO
-STDERR_FILENO
+STDIN_FILENO    0
+STDOUT_FILENO   1
+STDERR_FILENO   2
 
 /* Open a file */
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-int open(const char *path, int flags)
-int open(const char *path, int flags, mode_t mode)
+int open(const char *path, int flags);
+int open(const char *path, int flags, mode_t mode);
 
 /* open() flags */
 O_RDONLY
@@ -195,20 +197,86 @@ S_IXOTH
 
 /* Close a file */
 #include <unistd.h>
-int close(int fd)
+int close(int fd);
 
 /* Basic Read/Write */
 #include <unistd.h>
-ssize_t read(int fd, void *buf, size_t size)
-ssize_t write(int fd, const void *buf, size_t size)
+ssize_t read(int fd, void *buf, size_t size);
+ssize_t write(int fd, const void *buf, size_t size);
 
 /* File Offset */
 #include <sys/types.h>
 #include <unistd.h>
-off_t lseek(int fd, off_t offset, int whence)
+off_t lseek(int fd, off_t offset, int whence);
 
 /* lseek() whence */
 SEEK_SET
 SEEK_CUR
 SEEK_END
+
+/* File Status */
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+int stat(const char *path, struct stat *st_buf);
+int fstat(int fd, struct stat *st_buf);
+
+/* File stat struct */
+struct stat {
+	dev_t     st_dev;     /* ID of device containing file */
+	ino_t     st_ino;     /* inode number */
+	mode_t    st_mode;    /* protection */
+	nlink_t   st_nlink;   /* number of hard links */
+	uid_t     st_uid;     /* user ID of owner */
+	gid_t     st_gid;     /* group ID of owner */
+	dev_t     st_rdev;    /* device ID (if special file) */
+	off_t     st_size;    /* total size, in bytes */
+	blksize_t st_blksize; /* blocksize for filesystem I/O */
+	blkcnt_t  st_blocks;  /* number of 512B blocks allocated */
+	time_t    st_atime;   /* time of last access */
+	time_t    st_mtime;   /* time of last modification */
+	time_t    st_ctime;   /* time of last status change */
+};
+
+/* POSIX macros to check `st_mode` field in `stat` struct */
+S_ISREG(m)  // is it a regular file?
+S_ISDIR(m)  // directory?
+S_ISCHR(m)  // character device?
+S_ISBLK(m)  // block device?
+S_ISFIFO(m) // FIFO (named pipe)?
+S_ISLNK(m)  // symbolic link?  (Not in POSIX.1-1996.)
+S_ISSOCK(m) // socket?  (Not in POSIX.1-1996.)
+
+/* `st_mode` field in `stat` struct */
+S_IFMT     0170000   // bit mask for the file type bit fields
+S_IFSOCK   0140000   // socket
+S_IFLNK    0120000   // symbolic link
+S_IFREG    0100000   // regular file
+S_IFBLK    0060000   // block device
+S_IFDIR    0040000   // directory
+S_IFCHR    0020000   // character device
+S_IFIFO    0010000   // FIFO
+S_ISUID    0004000   // set-user-ID bit
+S_ISGID    0002000   // set-group-ID bit (see below)
+S_ISVTX    0001000   // sticky bit (see below)
+S_IRWXU    00700     // mask for file owner permissions
+S_IRUSR    00400     // owner has read permission
+S_IWUSR    00200     // owner has write permission
+S_IXUSR    00100     // owner has execute permission
+S_IRWXG    00070     // mask for group permissions
+S_IRGRP    00040     // group has read permission
+S_IWGRP    00020     // group has write permission
+S_IXGRP    00010     // group has execute permission
+S_IRWXO    00007     // mask for permissions for others (not in group)
+S_IROTH    00004     // others have read permission
+S_IWOTH    00002     // others have write permission
+S_IXOTH    00001     // others have execute permission
+
+/* Remove an empty directory */
+#include <unistd.h>
+int rmdir(const char *path);
+
+/* Delete a name from file system */
+#include <unistd.h>
+int unlink(const char *path);
 ```

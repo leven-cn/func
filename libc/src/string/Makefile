@@ -1,6 +1,6 @@
 # Makefile for string
 
--include $(TOPDIR)/def.mk
+-include $(TOPDIR)/../def.mk
 
 CPPFLAGS += -I$(TOPDIR)/include
 

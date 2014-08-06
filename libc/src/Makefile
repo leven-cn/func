@@ -1,6 +1,6 @@
 # Makefile
 
--include $(TOPDIR)/def.mk
+-include $(TOPDIR)/../def.mk
 
 SUBDIR_CTYPE = ctype
 SUBDIR_STR = string

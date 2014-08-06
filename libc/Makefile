@@ -1,6 +1,6 @@
 # Makefile
 
--include def.mk
+-include ../def.mk
 
 TOPDIR = .
 SRCDIR = $(TOPDIR)/src
